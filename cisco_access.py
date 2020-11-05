@@ -14,3 +14,10 @@ device = {
     "allow_agent" : False
 }
 
+try:
+    ssh_client.connect(**device)
+    stdin, stdout, stderr = ssh_client_exec_command('sh version')
+    output = stdout.read().decode()
+    print(output)
+finally:
+    ssh_client.close()
